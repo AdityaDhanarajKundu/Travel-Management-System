@@ -13,6 +13,12 @@ public class Splash extends JFrame implements Runnable{
         JLabel image = new JLabel(i3);
         add(image);
 
+        JLabel text = new JLabel("Travel Management System");
+        text.setForeground(Color.WHITE);
+        text.setFont(new Font("Raleway",Font.BOLD,60));
+        text.setBounds(260,170,800,80);
+        image.add(text);
+
 //        setSize(1200,600);
 //        setLocation(200,100);
         setVisible(true);
