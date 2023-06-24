@@ -73,7 +73,7 @@ public class Login extends JFrame implements ActionListener {
         forgot.setBackground(new Color(131,193,233));
         forgot.setForeground(Color.WHITE);
         forgot.setFont(new Font("Raleway",Font.BOLD,12));
-        forgot.setBorder(new LineBorder(new Color(131,193,233)));
+        forgot.setBorder(new LineBorder(new Color(3131,193,23)));
         forgot.addActionListener(this);
         p2.add(forgot);
 
@@ -97,6 +97,6 @@ public class Login extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
     }
 }
