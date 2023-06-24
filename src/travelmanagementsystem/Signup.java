@@ -25,6 +25,7 @@ public class Signup extends JFrame implements ActionListener {
         p1.add(uname);
         username = new JTextField();
         username.setBounds(190,20,180,25);
+        username.setFont(new Font("Raleway",Font.BOLD,15));
         username.setBorder(BorderFactory.createEmptyBorder());
         p1.add(username);
 
@@ -34,6 +35,7 @@ public class Signup extends JFrame implements ActionListener {
         p1.add(lname);
         name = new JTextField();
         name.setBounds(190,60,180,25);
+        name.setFont(new Font("Raleway",Font.BOLD,15));
         name.setBorder(BorderFactory.createEmptyBorder());
         p1.add(name);
 
@@ -43,6 +45,7 @@ public class Signup extends JFrame implements ActionListener {
         p1.add(pass);
         password = new JPasswordField();
         password.setBounds(190,100,180,25);
+        password.setFont(new Font("Raleway",Font.BOLD,15));
         password.setBorder(BorderFactory.createEmptyBorder());
         p1.add(password);
 
@@ -61,6 +64,7 @@ public class Signup extends JFrame implements ActionListener {
         p1.add(ans);
         answer = new JTextField();
         answer.setBounds(190,180,180,25);
+        answer.setFont(new Font("Raleway",Font.BOLD,15));
         answer.setBorder(BorderFactory.createEmptyBorder());
         p1.add(answer);
 
@@ -101,6 +105,29 @@ public class Signup extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==create){
+            String s_username = username.getText();
+            String s_name = name.getText();
+            String s_pass = password.getText();
+            String s_question = qdrop.getSelectedItem().toString();
+            String s_answer = answer.getText();
 
+            try{
+                Conn c = new Conn();
+                String query = "insert into account values ('"+s_username+"', '"+s_name+"', '"+s_pass+"', '"+s_question+"', '"+s_answer+"')";
+                c.s.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null,"Account created successfully");
+                setVisible(false);
+                new Login().setVisible(true);
+            }
+            catch(Exception e1){
+                System.out.println(e1);
+            }
+
+        } else if (e.getSource()==back) {
+            setVisible(false);
+            new Login().setVisible(true);
+        }
     }
 }

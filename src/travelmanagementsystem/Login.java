@@ -38,6 +38,7 @@ public class Login extends JFrame implements ActionListener {
         p2.add(name);
         username = new JTextField();
         username.setBounds(60,60,300,30);
+        username.setFont(new Font("Raleway",Font.BOLD,15));
         username.setBorder(BorderFactory.createEmptyBorder());
         p2.add(username);
 
@@ -47,6 +48,7 @@ public class Login extends JFrame implements ActionListener {
         p2.add(pass);
         password = new JPasswordField();
         password.setBounds(60,150,300,30);
+        password.setFont(new Font("Raleway",Font.BOLD,15));
         password.setBorder(BorderFactory.createEmptyBorder());
         p2.add(password);
 
@@ -73,7 +75,7 @@ public class Login extends JFrame implements ActionListener {
         forgot.setBackground(new Color(131,193,233));
         forgot.setForeground(Color.WHITE);
         forgot.setFont(new Font("Raleway",Font.BOLD,12));
-        forgot.setBorder(new LineBorder(new Color(3131,193,23)));
+        forgot.setBorder(new LineBorder(new Color(131,193,233)));
         forgot.addActionListener(this);
         p2.add(forgot);
 
@@ -97,6 +99,9 @@ public class Login extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource()==signup){
+            setVisible(false);
+            new Signup().setVisible(true);
+        }
     }
 }
