@@ -111,26 +111,32 @@ public class ForgetPassword extends JFrame implements ActionListener {
         if(e.getSource()==back){
             setVisible(false);
             new Login().setVisible(true);
-        } if (e.getSource()==retrieve) {
+        }else if (e.getSource()==retrieve) {
             try{
                 String query= "select * from account where answer = '"+answer_text.getText()+"' AND username = '"+username_text.getText()+"'";
                 Conn c = new Conn();
                 ResultSet rs = c.s.executeQuery(query);
-                while(rs.next()){
+                if (rs.next()){
                     password_text.setText(rs.getString("password"));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Answer doesn't match");
                 }
             }
             catch (Exception e1){
                 e1.printStackTrace();
             }
-        } if (e.getSource()==search) {
+        }else if (e.getSource()==search) {
             try{
                 String query= "select * from account where username = '"+username_text.getText()+"'";
                 Conn c = new Conn();
                 ResultSet rs = c.s.executeQuery(query);
-                while(rs.next()){
+                if (rs.next()){
                     name_text.setText(rs.getString("name"));
                     question_text.setText(rs.getString("question"));
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Username not found");
                 }
             }
             catch (Exception e1){
