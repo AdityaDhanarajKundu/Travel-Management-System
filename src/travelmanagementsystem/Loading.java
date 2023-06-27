@@ -10,20 +10,32 @@ public class Loading extends JFrame implements Runnable{
     Loading(String username){
         this.username= username;
 
+        JPanel p1 = new JPanel(null);
+        p1.setBounds(0,0,200,400);
+        p1.setBackground(new Color(131,193,233));
+        add(p1);
+
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/forget.jpg"));
+        Image i2 = i1.getImage().getScaledInstance(280,300,Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(560,20,280,300);
+        add(image);
+
         t = new Thread(this);
         JLabel text = new JLabel("Travel and Tourism Application");
-        text.setBounds(50,20,600,40);
-        text.setFont(new Font("Raleway",Font.BOLD,35));
+        text.setBounds(230,70,380,40);
+        text.setFont(new Font("Raleway",Font.BOLD,25));
         text.setForeground(Color.BLUE);
         add(text);
 
         bar = new JProgressBar();
-        bar.setBounds(150,100,300,35);
+        bar.setBounds(230,150,300,35);
         bar.setStringPainted(true);
         add(bar);
 
         JLabel wait = new JLabel("Loading, please wait...");
-        wait.setBounds(230,130,170,30);
+        wait.setBounds(230,190,170,30);
         wait.setFont(new Font("Raleway",Font.BOLD,16));
         wait.setForeground(Color.red);
         add(wait);
@@ -32,7 +44,7 @@ public class Loading extends JFrame implements Runnable{
         welcome.setBounds(20,310,400,40);
         welcome.setFont(new Font("Raleway",Font.BOLD,16));
         welcome.setForeground(Color.RED);
-        add(welcome);
+        p1.add(welcome);
 
         setBounds(500,200,650,400);
         getContentPane().setBackground(Color.WHITE);
@@ -58,7 +70,7 @@ public class Loading extends JFrame implements Runnable{
                 }
                 else { //when the value is more than 100
                     setVisible(false);
-                    
+
                 }
                 Thread.sleep(60);
             }
