@@ -5,6 +5,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -105,6 +106,26 @@ public class Login extends JFrame implements ActionListener {
         } else if (e.getSource()==forgot) {
             setVisible(false);
             new ForgetPassword().setVisible(true);
+        } else if (e.getSource()==login) {
+            try{
+                String user = username.getText();
+                String pass = password.getText();
+
+                Conn c = new Conn();
+                String query= "select name from account where password = '"+pass+"' AND username = '"+user+"'";
+                ResultSet rs = c.s.executeQuery(query);
+                if(rs.next()){
+                    String u_name = rs.getString("name");
+                    setVisible(false);
+                    new Loading(u_name).setVisible(true);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Incorrect Username or Password");
+                }
+            }
+            catch (Exception e1){
+                e1.printStackTrace();
+            }
         }
     }
 }
