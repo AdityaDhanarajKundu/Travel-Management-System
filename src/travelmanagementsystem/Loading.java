@@ -11,31 +11,31 @@ public class Loading extends JFrame implements Runnable{
         this.username= username;
 
         JPanel p1 = new JPanel(null);
-        p1.setBounds(0,0,200,400);
+        p1.setBounds(0,0,230,400);
         p1.setBackground(new Color(131,193,233));
         add(p1);
 
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/forget.jpg"));
-        Image i2 = i1.getImage().getScaledInstance(280,300,Image.SCALE_DEFAULT);
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/loading.png"));
+        Image i2 = i1.getImage().getScaledInstance(150,150,Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel image = new JLabel(i3);
-        image.setBounds(560,20,280,300);
+        image.setBounds(470,215,150,150);
         add(image);
 
         t = new Thread(this);
         JLabel text = new JLabel("Travel and Tourism Application");
-        text.setBounds(230,70,380,40);
+        text.setBounds(240,70,380,40);
         text.setFont(new Font("Raleway",Font.BOLD,25));
         text.setForeground(Color.BLUE);
         add(text);
 
         bar = new JProgressBar();
-        bar.setBounds(230,150,300,35);
+        bar.setBounds(240,150,300,35);
         bar.setStringPainted(true);
         add(bar);
 
         JLabel wait = new JLabel("Loading, please wait...");
-        wait.setBounds(230,190,170,30);
+        wait.setBounds(260,190,170,30);
         wait.setFont(new Font("Raleway",Font.BOLD,16));
         wait.setForeground(Color.red);
         add(wait);
