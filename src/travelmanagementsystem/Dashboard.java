@@ -2,8 +2,10 @@ package travelmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Dashboard extends JFrame {
+public class Dashboard extends JFrame implements ActionListener {
     JButton add_pdetails,update_pdetails,view_pdetails,delete_pdetails,view_booked_hotels,calculator,about;
     JButton check_package,book_package,view_package,view_hotels,book_hotels,destination,notepad,payments;
     Dashboard(){
@@ -50,6 +52,7 @@ public class Dashboard extends JFrame {
         add_pdetails.setForeground(Color.WHITE);
         add_pdetails.setFont(new Font("Tahoma",Font.BOLD,20));
         add_pdetails.setMargin(new Insets(0,0,0,60)); //adds margin or padding
+        add_pdetails.addActionListener(this);
         p2.add(add_pdetails);
 
         update_pdetails = new JButton("Update Personal Details");
@@ -173,5 +176,12 @@ public class Dashboard extends JFrame {
     }
     public static void main(String[] args) {
         new Dashboard();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==add_pdetails){
+
+        }
     }
 }
