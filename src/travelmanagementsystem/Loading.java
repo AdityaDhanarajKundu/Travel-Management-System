@@ -7,8 +7,10 @@ public class Loading extends JFrame implements Runnable{
     String username;
     JProgressBar bar;
     Thread t;
-    Loading(String username){
+    String password;
+    Loading(String username,String password){
         this.username= username;
+        this.password=password;
 
         JPanel p1 = new JPanel(null);
         p1.setBounds(0,0,230,400);
@@ -55,7 +57,7 @@ public class Loading extends JFrame implements Runnable{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        new Loading("");
+        new Loading("","");
     }
 
     @Override
@@ -70,7 +72,7 @@ public class Loading extends JFrame implements Runnable{
                 }
                 else { //when the value is more than 100
                     setVisible(false);
-
+                    new Dashboard(username,password).setVisible(true);
                 }
                 Thread.sleep(60);
             }

@@ -2,14 +2,22 @@ package travelmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
-public class AddCustomer extends JFrame {
+public class AddCustomer extends JFrame implements ActionListener {
     JLabel labelusername,labelname,lblcountry;
     JTextField number_text,country_text,address_text,phone_text,email_text;
     JComboBox idchoice;
     JRadioButton male,female,trans;
     JButton add,back;
-    AddCustomer(){
+    String username,password;
+    AddCustomer(String username,String password){
+
+        this.username=username;
+        this.password=password;
+
         JPanel p1 = new JPanel(null);
         p1.setBounds(0,0,850,40);
         p1.setBackground(new Color(0,0,102));
@@ -24,7 +32,7 @@ public class AddCustomer extends JFrame {
         lblusername.setBounds(30,50,150,25);
         add(lblusername);
 
-        labelusername = new JLabel();
+        labelusername = new JLabel(username);
         labelusername.setBounds(220,50,150,25);
         add(labelusername);
 
@@ -104,12 +112,14 @@ public class AddCustomer extends JFrame {
         add.setBackground(Color.BLACK);
         add.setForeground(Color.WHITE);
         add.setBounds(70,430,100,25);
+        add.addActionListener(this);
         add(add);
 
         back = new JButton("Back");
         back.setBackground(Color.BLACK);
         back.setForeground(Color.WHITE);
         back.setBounds(200,430,100,25);
+        back.addActionListener(this);
         add(back);
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/newcustomer.jpg"));
@@ -119,14 +129,61 @@ public class AddCustomer extends JFrame {
         image.setBounds(430,50,400,500);
         add(image);
 
+        try{
+            Conn c = new Conn();
+            ResultSet rs = c.s.executeQuery("select * from account where name = '"+username+"' and password = '"+password+"'");
+            while(rs.next()){
+                labelname.setText(rs.getString("name"));
+                labelusername.setText(rs.getString("username"));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
         setBounds(450,200,850,550);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         setTitle("Add Details");
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        new AddCustomer();
+        new AddCustomer("","");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==add){
+               String s_username = labelusername.getText();
+               String s_name = labelname.getText();
+               String id = idchoice.getSelectedItem().toString();
+               String number = number_text.getText();
+               String gender = null;
+               if (male.isSelected()){
+                   gender="Male";
+               } else if (female.isSelected()) {
+                   gender="Female";
+               } else if (trans.isSelected()) {
+                   gender="Transgender";
+               }
+               String country = country_text.getText();
+               String address = address_text.getText();
+               String phone = phone_text.getText();
+               String email = email_text.getText();
+
+               try{
+                   Conn c = new Conn();
+                   String query = "insert into customer values ('"+s_username+"', '"+id+"', '"+number+"', '"+s_name+"', '"+gender+"', '"+country+"', '"+address+"', '"+phone+"', '"+email+"')";
+                   c.s.executeUpdate(query);
+
+                   JOptionPane.showMessageDialog(null,"Customer Details added successfully");
+                   setVisible(false);
+               }
+               catch (Exception e1){
+                   e1.printStackTrace();
+               }
+        } else if (e.getSource()==back) {
+            setVisible(false);
+        }
     }
 }

@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 public class Dashboard extends JFrame implements ActionListener {
     JButton add_pdetails,update_pdetails,view_pdetails,delete_pdetails,view_booked_hotels,calculator,about;
     JButton check_package,book_package,view_package,view_hotels,book_hotels,destination,notepad,payments;
-    Dashboard(){
+    String username,password;
+    Dashboard(String username,String password){
+        this.username=username;
+        this.password=password;
 
         JPanel p1 = new JPanel(null);
         p1.setBackground(new Color(0,0,102));
@@ -175,13 +178,13 @@ public class Dashboard extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        new Dashboard();
+        new Dashboard("","");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==add_pdetails){
-
+            new AddCustomer(username,password).setVisible(true);
         }
     }
 }
