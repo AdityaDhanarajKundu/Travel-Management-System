@@ -112,10 +112,10 @@ public class Login extends JFrame implements ActionListener {
                 String pass = password.getText();
 
                 Conn c = new Conn();
-                String query= "select name from account where password = '"+pass+"' AND username = '"+user+"'";
+                String query= "select * from account where password = '"+pass+"' AND username = '"+user+"'";
                 ResultSet rs = c.s.executeQuery(query);
                 if(rs.next()){
-                    String u_name = rs.getString("name");
+                    String u_name = rs.getString("username");
                     setVisible(false);
                     new Loading(u_name,pass).setVisible(true);
                 }

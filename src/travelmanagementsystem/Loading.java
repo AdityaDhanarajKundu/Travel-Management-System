@@ -2,6 +2,7 @@ package travelmanagementsystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
 
 public class Loading extends JFrame implements Runnable{
     String username;
@@ -11,6 +12,17 @@ public class Loading extends JFrame implements Runnable{
     Loading(String username,String password){
         this.username= username;
         this.password=password;
+        String name="";
+        try {
+            Conn c = new Conn();
+            ResultSet rs = c.s.executeQuery("select * from account where username = '"+username+"' and password = '"+password+"'");
+            while (rs.next()){
+                name = rs.getString("name");
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
 
         JPanel p1 = new JPanel(null);
         p1.setBounds(0,0,230,400);
@@ -42,7 +54,7 @@ public class Loading extends JFrame implements Runnable{
         wait.setForeground(Color.red);
         add(wait);
 
-        JLabel welcome = new JLabel("Welcome, "+username);
+        JLabel welcome = new JLabel("Welcome, "+name);
         welcome.setBounds(20,310,400,40);
         welcome.setFont(new Font("Raleway",Font.BOLD,16));
         welcome.setForeground(Color.RED);
