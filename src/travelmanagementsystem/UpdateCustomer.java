@@ -172,7 +172,33 @@ public class UpdateCustomer extends JFrame implements ActionListener {
         if (e.getSource()==back){
             setVisible(false);
         } else if (e.getSource()==update) {
-            
+            String s_name = labelname.getText();
+            String id = id_text.getText();
+            String number = number_text.getText();
+            String gender = null;
+            if (male.isSelected()){
+                gender="Male";
+            } else if (female.isSelected()) {
+                gender="Female";
+            } else if (trans.isSelected()) {
+                gender="Transgender";
+            }
+            String country = country_text.getText();
+            String address = address_text.getText();
+            String phone = phone_text.getText();
+            String email = email_text.getText();
+
+            try{
+                Conn c = new Conn();
+                String query = "update customer set username = '"+username+"', id = '"+id+"', number = '"+number+"', name = '"+s_name+"', gender = '"+gender+"', country = '"+country+"', address = '"+address+"', phone = '"+phone+"', email = '"+email+"'";
+                c.s.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null,"Customer Details Updated successfully");
+                setVisible(false);
+            }
+            catch (Exception e1){
+                e1.printStackTrace();
+            }
         }
     }
 }
