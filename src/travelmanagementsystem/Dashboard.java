@@ -64,6 +64,7 @@ public class Dashboard extends JFrame implements ActionListener {
         update_pdetails.setForeground(Color.WHITE);
         update_pdetails.setFont(new Font("Tahoma",Font.BOLD,20));
         update_pdetails.setMargin(new Insets(0,0,0,30)); //adds margin or padding
+        update_pdetails.addActionListener(this);
         p2.add(update_pdetails);
 
         view_pdetails = new JButton("View Details");
@@ -188,6 +189,8 @@ public class Dashboard extends JFrame implements ActionListener {
             new AddCustomer(username,password).setVisible(true);
         } else if (e.getSource()==view_pdetails) {
             new ViewCustomer(username,password).setVisible(true);
+        } else if (e.getSource()==update_pdetails) {
+            new UpdateCustomer(username,password).setVisible(true);
         }
     }
 }
