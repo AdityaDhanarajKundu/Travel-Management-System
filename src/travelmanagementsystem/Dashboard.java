@@ -90,6 +90,7 @@ public class Dashboard extends JFrame implements ActionListener {
         check_package.setForeground(Color.WHITE);
         check_package.setFont(new Font("Tahoma",Font.BOLD,20));
         check_package.setMargin(new Insets(0,0,0,110)); //adds margin or padding
+        check_package.addActionListener(this);
         p2.add(check_package);
 
         book_package = new JButton("Book Package");
@@ -191,6 +192,8 @@ public class Dashboard extends JFrame implements ActionListener {
             new ViewCustomer(username,password).setVisible(true);
         } else if (e.getSource()==update_pdetails) {
             new UpdateCustomer(username,password).setVisible(true);
+        } else if (e.getSource()==check_package) {
+            new CheckPackages().setVisible(true);
         }
     }
 }
