@@ -139,8 +139,6 @@ public class CheckPackages extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==back){
-            setVisible(false);
-        }
+       setVisible(false);
     }
 }
