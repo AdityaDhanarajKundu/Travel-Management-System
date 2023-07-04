@@ -10,9 +10,9 @@ public class CheckPackages extends JFrame implements ActionListener {
     JPanel closeButtonPanel;
     JButton back;
     CheckPackages(){
-        String[] package1 = new String[]{"package1.jpg","GOLD PACKAGE","6 days and 7 Nights", "Airport Assistance at Aiport", "Half Day City Tour", "Welcome drinks on Arrival", "Daily Buffet", "Full Day 3 Island Cruise", "English Speaking Guide", "BOOK NOW", "Summer Special", "Rs 12000 only"};
-        String[] package2 = new String[]{"package2.jpg","SILVER PACKAGE","4 days and 3 Nights", "Toll Free and Entrance Free Tickets", "Meet and Greet at Aiport", "Welcome drinks on Arrival", "Night Safari", "Full Day 3 Island Cruise", "Cruise with Dinner", "BOOK NOW", "Winter Special", "Rs 25000 only"};
-        String[] package3 = new String[]{"package3.jpg","BRONZE PACKAGE","6 days and 5 Nights", "Return Airfare", "Free Clubbing, Horse Riding & other Games", "Welcome drinks on Arrival", "Daily Buffet", "Stay in 5 Star Hotel", "BBQ Dinner", "BOOK NOW", "Winter Special", "Rs 32000 only"};
+        String[] package1 = new String[]{"package1.jpg","GOLD PACKAGE","6 days and 7 Nights", "Airport Assistance at Aiport", "Half Day City Tour", "Welcome drinks on Arrival", "Daily Buffet", "Full Day 3 Island Cruise", "English Speaking Guide", "BOOK NOW", "Summer Special", "Rs 25000 only"};
+        String[] package2 = new String[]{"package2.jpg","SILVER PACKAGE","4 days and 3 Nights", "Toll Free and Entrance Free Tickets", "Meet and Greet at Aiport", "Welcome drinks on Arrival", "Night Safari", "Full Day 3 Island Cruise", "Cruise with Dinner", "BOOK NOW", "Winter Special", "Rs 15000 only"};
+        String[] package3 = new String[]{"package3.jpg","DIAMOND PACKAGE","6 days and 5 Nights", "Return Airfare", "Free Clubbing & Horse Ride", "Welcome drinks on Arrival", "Daily Buffet", "Stay in 5 Star Hotel", "BBQ Dinner", "BOOK NOW", "Winter Special", "Rs 32000 only"};
 
         tab = new JTabbedPane();    //creating the tab object
         JPanel p1 = create_package(package1);
@@ -59,7 +59,7 @@ public class CheckPackages extends JFrame implements ActionListener {
         p1.add(header);
 
         JLabel l1 = new JLabel(pack[1]);
-        l1.setBounds(50,5,300,30);
+        l1.setBounds(50,5,400,30);
         l1.setForeground(Color.YELLOW);
         l1.setFont(new Font("Tahoma", Font.BOLD, 30));
         header.add(l1);
