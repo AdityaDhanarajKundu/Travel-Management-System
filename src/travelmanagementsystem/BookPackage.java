@@ -134,14 +134,15 @@ public class BookPackage extends JFrame implements ActionListener {
         setVisible(true);
     }
     public static void main(String[] args) {
-        new BookPackage("","");
+        new BookPackage("@Aditya","1234");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==back){
             setVisible(false);
-        } else if (e.getSource()==checkprice) {
+        }
+        else if (e.getSource()==checkprice) {
             String pack = labelpackage.getSelectedItem().toString();
             int cost = 0;
             int heads = (int)spinner.getValue();
@@ -154,8 +155,21 @@ public class BookPackage extends JFrame implements ActionListener {
             }
             cost*=heads;
             labeltotal.setText("Rs. "+cost);
-        } else if (e.getSource()==book) {
-            
+        }
+        else if (e.getSource()==book) {
+            try{
+                Conn c = new Conn();
+                String pack = labelpackage.getSelectedItem().toString();
+                String person = spinner.getValue().toString();
+
+                String query = "insert into bookpackage values ('"+username+"','"+pack+"','"+person+"','"+labelid.getText()+"','"+labelnumber.getText()+"','"+labelphone.getText()+"','"+labeltotal.getText()+"')";
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null,"Package Booked Successfully");
+                setVisible(false);
+            }
+            catch(Exception e1){
+                e1.printStackTrace();
+            }
         }
     }
 }
