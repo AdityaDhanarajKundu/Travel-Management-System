@@ -142,6 +142,7 @@ public class Dashboard extends JFrame implements ActionListener {
         destination.setForeground(Color.WHITE);
         destination.setFont(new Font("Tahoma",Font.BOLD,20));
         destination.setMargin(new Insets(0,0,0,140)); //adds margin or padding
+        destination.addActionListener(this);
         p2.add(destination);
 
         calculator = new JButton("Calculator");
@@ -203,6 +204,8 @@ public class Dashboard extends JFrame implements ActionListener {
             new ViewPackage(username,password).setVisible(true);
         } else if (e.getSource()==view_hotels) {
             new CheckHotels(username,password).setVisible(true);
+        } else if (e.getSource()==destination) {
+            new Destination(username,password).setVisible(true);
         }
     }
 }
