@@ -228,7 +228,7 @@ public class BookHotel extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new BookHotel("@Aditya","1234");
+        new BookHotel("","");
     }
 
     @Override
@@ -254,6 +254,8 @@ public class BookHotel extends JFrame implements ActionListener {
                     String foodselected="";
                     if(yes.isSelected()){
                         foodselected="Yes";
+                    }else{
+                        foodselected="No";
                     }
                     //condition checking coz we cant calculate price if anyone select 0 person for 0 days
                     if (persons*days>=1){
@@ -276,12 +278,18 @@ public class BookHotel extends JFrame implements ActionListener {
         else if(e.getSource()==book){
             try{
                 Conn c = new Conn();
-                String pack = labelpackage.getSelectedItem().toString();
-                String person = spinner.getValue().toString();
+                String hotel = labelhotel.getSelectedItem().toString();
+                String persons = tfperson.getText();
+                String foodselected="";
+                if(yes.isSelected()){
+                    foodselected="Yes";
+                }else{
+                    foodselected="No";
+                }
 
-                String query = "insert into bookpackage values ('"+username+"','"+pack+"','"+person+"','"+labelid.getText()+"','"+labelnumber.getText()+"','"+labelphone.getText()+"','"+labeltotal.getText()+"')";
+                String query = "insert into bookhotel values ('"+username+"','"+hotel+"','"+tfdays.getText()+"','"+persons+"','"+cac.getSelectedItem()+"','"+foodselected+"','"+labelid.getText()+"','"+labelnumber.getText()+"','"+labelphone.getText()+"','"+labeltotal.getText()+"')";
                 c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null,"Package Booked Successfully");
+                JOptionPane.showMessageDialog(null,"Hotel Booked Successfully");
                 setVisible(false);
             }
             catch(Exception e1){
