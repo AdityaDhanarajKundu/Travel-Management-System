@@ -6,14 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
-public class BookPackage extends JFrame implements ActionListener {
+public class BookHotel extends JFrame implements ActionListener {
+    String username,password;
     JLabel labelname,labelid,labelnumber,labelphone,labeltotal;
     JComboBox labelpackage;
     JSpinner spinner;
-    String username,password;
     JButton checkprice,book,back;
-    BookPackage(String username,String password){
-
+    BookHotel(String username,String password){
         this.username=username;
         this.password=password;
 
@@ -21,7 +20,7 @@ public class BookPackage extends JFrame implements ActionListener {
         p1.setBounds(0,0,1100,40);
         p1.setBackground(new Color(0,0,102));
         add(p1);
-        JLabel heading = new JLabel("Book Package");
+        JLabel heading = new JLabel("Book Hotel");
         heading.setBounds(150,10,300,30);
         heading.setFont(new Font("Tahoma",Font.BOLD,25));
         heading.setForeground(Color.YELLOW);
@@ -159,42 +158,11 @@ public class BookPackage extends JFrame implements ActionListener {
         setVisible(true);
     }
     public static void main(String[] args) {
-        new BookPackage("","");
+        new BookHotel("","");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==back){
-            setVisible(false);
-        }
-        else if (e.getSource()==checkprice) {
-            String pack = labelpackage.getSelectedItem().toString();
-            int cost = 0;
-            int heads = (int)spinner.getValue();
-            if(pack.equals("Gold Package")){
-                cost+=25000;
-            } else if (pack.equals("Silver Package")) {
-                cost+= 15000;
-            } else if (pack.equals("Diamond Package")) {
-                cost+=32000;
-            }
-            cost*=heads;
-            labeltotal.setText("Rs. "+cost);
-        }
-        else if (e.getSource()==book) {
-            try{
-                Conn c = new Conn();
-                String pack = labelpackage.getSelectedItem().toString();
-                String person = spinner.getValue().toString();
 
-                String query = "insert into bookpackage values ('"+username+"','"+pack+"','"+person+"','"+labelid.getText()+"','"+labelnumber.getText()+"','"+labelphone.getText()+"','"+labeltotal.getText()+"')";
-                c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null,"Package Booked Successfully");
-                setVisible(false);
-            }
-            catch(Exception e1){
-                e1.printStackTrace();
-            }
-        }
     }
 }
