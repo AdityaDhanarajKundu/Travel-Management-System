@@ -242,9 +242,49 @@ public class BookHotel extends JFrame implements ActionListener {
                 String hotel = labelhotel.getSelectedItem().toString();
                 String query = "select * from hotels where name = '"+hotel+"'";
                 ResultSet rs = c.s.executeQuery(query);
+                while (rs.next()){
+                    int cost = Integer.parseInt(rs.getString("costperperson"));
+                    int ac = Integer.parseInt(rs.getString("acroom"));
+                    int food = Integer.parseInt(rs.getString("fooding"));
 
+                    int persons = Integer.parseInt(tfperson.getText());
+                    int days = Integer.parseInt(tfdays.getText());
+
+                    String acselected = cac.getSelectedItem().toString();
+                    String foodselected="";
+                    if(yes.isSelected()){
+                        foodselected="Yes";
+                    }
+                    //condition checking coz we cant calculate price if anyone select 0 person for 0 days
+                    if (persons*days>=1){
+                        int total = 0;
+                        total+= foodselected.equals("Yes")? food:0; //using the conditional operator instead of if else
+                        total+= acselected.equals("AC")? ac:0;
+                        total+=cost;
+                        total=total*persons*days;
+                        labeltotal.setText("Rs. "+total);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,"Please enter valid details for persons and days.");
+                    }
+                }
             }
             catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
+        else if(e.getSource()==book){
+            try{
+                Conn c = new Conn();
+                String pack = labelpackage.getSelectedItem().toString();
+                String person = spinner.getValue().toString();
+
+                String query = "insert into bookpackage values ('"+username+"','"+pack+"','"+person+"','"+labelid.getText()+"','"+labelnumber.getText()+"','"+labelphone.getText()+"','"+labeltotal.getText()+"')";
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null,"Package Booked Successfully");
+                setVisible(false);
+            }
+            catch(Exception e1){
                 e1.printStackTrace();
             }
         }
