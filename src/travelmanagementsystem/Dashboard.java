@@ -237,7 +237,7 @@ public class Dashboard extends JFrame implements ActionListener {
                 e1.printStackTrace();
             }
         } else if (e.getSource()==about) {
-            
+            new About().setVisible(true);
         }
     }
 }
