@@ -153,6 +153,7 @@ public class Dashboard extends JFrame implements ActionListener {
         calculator.setForeground(Color.WHITE);
         calculator.setFont(new Font("Tahoma",Font.BOLD,20));
         calculator.setMargin(new Insets(0,0,0,160)); //adds margin or padding
+        calculator.addActionListener(this);
         p2.add(calculator);
 
         notepad = new JButton("Notepad");
@@ -161,6 +162,7 @@ public class Dashboard extends JFrame implements ActionListener {
         notepad.setForeground(Color.WHITE);
         notepad.setFont(new Font("Tahoma",Font.BOLD,20));
         notepad.setMargin(new Insets(0,0,0,170)); //adds margin or padding
+        notepad.addActionListener(this);
         p2.add(notepad);
 
         payments = new JButton("Payments");
@@ -169,6 +171,7 @@ public class Dashboard extends JFrame implements ActionListener {
         payments.setForeground(Color.WHITE);
         payments.setFont(new Font("Tahoma",Font.BOLD,20));
         payments.setMargin(new Insets(0,0,0,160)); //adds margin or padding
+        payments.addActionListener(this);
         p2.add(payments);
 
         about = new JButton("About");
@@ -177,6 +180,7 @@ public class Dashboard extends JFrame implements ActionListener {
         about.setForeground(Color.WHITE);
         about.setFont(new Font("Tahoma",Font.BOLD,20));
         about.setMargin(new Insets(0,0,0,194)); //adds margin or padding
+        about.addActionListener(this);
         p2.add(about);
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -212,6 +216,28 @@ public class Dashboard extends JFrame implements ActionListener {
             new BookHotel(username,password).setVisible(true);
         }else if(e.getSource()==view_booked_hotels){
             new ViewHotel(username,password).setVisible(true);
+        } else if (e.getSource()==payments) {
+            new Payments().setVisible(true);
+        } else if (e.getSource()==calculator) {
+            //since the calculator app is an external entity there is chance of errors and exceptions happening
+            // So we need to use the try and catch block
+            try{
+                Runtime.getRuntime().exec("calc.exe");
+            }
+            catch (Exception e1){
+                e1.printStackTrace();
+            }
+        } else if (e.getSource()==notepad) {
+            //since the notepad app is an external entity there is chance of errors and exceptions happening
+            // So we need to use the try and catch block
+            try{
+                Runtime.getRuntime().exec("notepad.exe");
+            }
+            catch (Exception e1){
+                e1.printStackTrace();
+            }
+        } else if (e.getSource()==about) {
+            
         }
     }
 }
