@@ -135,6 +135,7 @@ public class Dashboard extends JFrame implements ActionListener {
         view_booked_hotels.setForeground(Color.WHITE);
         view_booked_hotels.setFont(new Font("Tahoma",Font.BOLD,20));
         view_booked_hotels.setMargin(new Insets(0,0,0,60)); //adds margin or padding
+        view_booked_hotels.addActionListener(this);
         p2.add(view_booked_hotels);
 
         destination = new JButton("Destinations");
@@ -209,6 +210,8 @@ public class Dashboard extends JFrame implements ActionListener {
             new Destination(username,password).setVisible(true);
         } else if (e.getSource()==book_hotels) {
             new BookHotel(username,password).setVisible(true);
+        }else if(e.getSource()==view_booked_hotels){
+            new ViewHotel(username,password).setVisible(true);
         }
     }
 }
