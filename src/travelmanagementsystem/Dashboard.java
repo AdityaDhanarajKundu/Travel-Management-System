@@ -29,6 +29,11 @@ public class Dashboard extends JFrame implements ActionListener {
         heading.setBounds(80,10,300,40);
         heading.setFont(new Font("Tahoma",Font.BOLD,30));
         heading.setForeground(Color.WHITE);
+        JLabel contacts1 = new JLabel("email : adityadhanarajkundu@gmail.com");
+        contacts1.setFont(new Font("Tahoma",Font.BOLD,18));
+        contacts1.setForeground(Color.WHITE);
+        contacts1.setBounds(1500,30,400,40);
+        p1.add(contacts1);
         p1.add(heading);
 
         JPanel p2 = new JPanel(null);
