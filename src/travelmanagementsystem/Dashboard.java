@@ -82,6 +82,7 @@ public class Dashboard extends JFrame implements ActionListener {
         delete_pdetails.setForeground(Color.WHITE);
         delete_pdetails.setFont(new Font("Tahoma",Font.BOLD,20));
         delete_pdetails.setMargin(new Insets(0,0,0,34)); //adds margin or padding
+        delete_pdetails.addActionListener(this);
         p2.add(delete_pdetails);
 
         check_package = new JButton("Check Package");
@@ -238,6 +239,8 @@ public class Dashboard extends JFrame implements ActionListener {
             }
         } else if (e.getSource()==about) {
             new About().setVisible(true);
+        } else if (e.getSource()==delete_pdetails) {
+            new DeleteDetails(username,password).setVisible(true);
         }
     }
 }

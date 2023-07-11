@@ -21,6 +21,7 @@ public class Splash extends JFrame implements Runnable{
 
 //        setSize(1200,600);
 //        setLocation(200,100);
+        setUndecorated(true);
         setVisible(true);
 
         thread = new Thread(this);
@@ -44,8 +45,9 @@ public class Splash extends JFrame implements Runnable{
     @Override
     public void run() {
         try{
-            Thread.sleep(7000);
+            Thread.sleep(5000);
             setVisible(false);
+            new Login().setVisible(true);
         }
         catch(Exception e){
             System.out.println(e);
